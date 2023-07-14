@@ -162,16 +162,20 @@ export const eventRouter = createTRPCRouter({
       //Handling Exceptions and Cancelations
       const eventExceptions = await ctx.prisma.eventException.findMany({
         where: {
-          OR: {
-            originalDate: {
-              gte: input.dateStart,
-              lte: input.dateEnd,
+          OR: [
+            {
+              originalDate: {
+                gte: input.dateStart,
+                lte: input.dateEnd,
+              },
             },
-            newDate: {
-              gte: input.dateStart,
-              lte: input.dateEnd,
+            {
+              newDate: {
+                gte: input.dateStart,
+                lte: input.dateEnd,
+              },
             },
-          },
+          ],
         },
         include: {
           EventMaster: {
