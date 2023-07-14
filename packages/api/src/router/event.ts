@@ -1,16 +1,17 @@
-import { TRPCError } from "@trpc/server";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
-import { RRule, Frequency, RRuleSet, rrulestr } from "rrule";
-import { z } from "zod";
-import moment from "moment";
 import type { PrismaClient } from "@prisma/client";
+import { TRPCError } from "@trpc/server";
+import moment from "moment";
+import { Frequency, RRule, RRuleSet, rrulestr } from "rrule";
+import { z } from "zod";
+
+import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 function generateRule(
   startDate: Date | undefined,
   endDate: Date | undefined,
   frequency: Frequency,
   interval: number | undefined,
-  count: number | undefined
+  count: number | undefined,
 ): string {
   const ruleSet = new RRuleSet();
   const rule = new RRule({
@@ -62,7 +63,7 @@ export const eventRouter = createTRPCRouter({
         frequency: z.nativeEnum(Frequency),
         interval: z.number().optional(),
         count: z.number().optional(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const eventMaster = await ctx.prisma.$transaction(async (tx) => {
@@ -80,7 +81,7 @@ export const eventRouter = createTRPCRouter({
               input.until,
               input.frequency,
               input.interval,
-              input.count
+              input.count,
             ),
             workspaceId: ctx.session.user.activeWorkspaceId,
             eventInfoId: eventInfo.id,
@@ -97,7 +98,7 @@ export const eventRouter = createTRPCRouter({
       z.object({
         dateStart: z.date(),
         dateEnd: z.date(),
-      })
+      }),
     )
     .query(async ({ ctx, input }) => {
       const eventMasters = await ctx.prisma.eventMaster.findMany({
@@ -210,7 +211,7 @@ export const eventRouter = createTRPCRouter({
             (x) =>
               calendarTask.eventMasterId &&
               x.eventMasterId === calendarTask.eventMasterId &&
-              moment(x.originalDate).isSame(calendarTask.date)
+              moment(x.originalDate).isSame(calendarTask.date),
           );
           if (foundCancelation) return null;
 
@@ -220,7 +221,7 @@ export const eventRouter = createTRPCRouter({
           const foundException = eventExceptions.find(
             (exception) =>
               exception.eventMasterId === calendarTask.eventMasterId &&
-              moment(exception.originalDate).isSame(calendarTask.date)
+              moment(exception.originalDate).isSame(calendarTask.date),
           );
           if (foundException) {
             calendarTask = {
@@ -272,7 +273,7 @@ export const eventRouter = createTRPCRouter({
         })
         .refine(
           (data) => data.eventExceptionId || data.eventMasterId,
-          "Either eventMasterId or eventExceptionId must be provided"
+          "Either eventMasterId or eventExceptionId must be provided",
         )
         .refine((data) => {
           if (data.eventMasterId && data.eventExceptionId) return false;
@@ -289,8 +290,8 @@ export const eventRouter = createTRPCRouter({
                 .or(z.literal("single")),
               date: z.date(),
             }),
-          ])
-        )
+          ]),
+        ),
     )
     .mutation(async ({ ctx, input }) => {
       if (input.exclusionDefinition === "single") {
@@ -366,7 +367,7 @@ export const eventRouter = createTRPCRouter({
         const occurences = rule.between(
           eventMaster.DateStart,
           input.date,
-          true
+          true,
         );
         const penultimateOccurence = occurences[occurences.length - 2];
         if (!penultimateOccurence)
@@ -420,7 +421,7 @@ export const eventRouter = createTRPCRouter({
         })
         .refine(
           (data) => data.eventExceptionId || data.eventMasterId,
-          "Either eventMasterId or eventExceptionId must be provided"
+          "Either eventMasterId or eventExceptionId must be provided",
         )
         .refine((data) => {
           if (data.eventMasterId && data.eventExceptionId) return false;
@@ -449,8 +450,8 @@ export const eventRouter = createTRPCRouter({
               from: z.date().optional(),
               editDefinition: z.literal("single"),
             }),
-          ])
-        )
+          ]),
+        ),
     )
     .mutation(async ({ ctx, input }) => {
       if (input.editDefinition === "single") {
@@ -509,7 +510,7 @@ export const eventRouter = createTRPCRouter({
         const foundTimestamp = evtMasterRule.between(
           input.selectedTimestamp,
           input.selectedTimestamp,
-          true
+          true,
         )[0];
 
         if (!foundTimestamp)
@@ -590,8 +591,6 @@ export const eventRouter = createTRPCRouter({
 
         //* Não temos uma exceção nem uma ocorrência que bate com o selectedTimestamp. Vamos gerar um erro.
       } else if (input.editDefinition === "thisAndFuture") {
-        const { title, description, from, until, frequency, interval, count } =
-          input;
         //* Havemos description, title, from, until, frequency, inteval, count e selectedTimestamp.
         //* Havemos um selectedTimestamp.
         //* Temos que procurar se temos uma exceção que bate com o selectedTimestamp.
