@@ -11,7 +11,7 @@
     "start": "pnpm with-env next start",
     "type-check": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --",
-		"preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
