@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { api } from "@/utils/api";
 
 export default function Home() {
