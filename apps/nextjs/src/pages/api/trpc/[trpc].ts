@@ -1,6 +1,5 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
 import { createNextApiHandler } from "@trpc/server/adapters/next";
-import cors from "nextjs-cors";
 
 import { appRouter, createTRPCContext } from "@kdx/api";
 
