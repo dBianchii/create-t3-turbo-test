@@ -1,7 +1,6 @@
 import { appsRouter } from "./router/apps";
 import { authRouter } from "./router/auth";
 import { eventRouter } from "./router/event";
-import { postRouter } from "./router/post";
 import { technologyRouter } from "./router/technology";
 import { todoRouter } from "./router/todo";
 import { userRouter } from "./router/user";
