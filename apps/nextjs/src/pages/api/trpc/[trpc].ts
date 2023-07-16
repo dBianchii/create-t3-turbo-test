@@ -11,9 +11,9 @@ import { appRouter, createTRPCContext } from "@kdx/api";
 // });
 
 // If you need to enable cors, you can do so like this:
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = (req: NextApiRequest, res: NextApiResponse) => {
   // Enable cors
-  await cors(req, res);
+
   res.setHeader("Access-Control-Allow-Credentials", "*");
   res.setHeader("Access-Control-Allow-Origin", "*");
   // another common pattern
