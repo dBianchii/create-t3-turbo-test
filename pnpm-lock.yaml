@@ -419,6 +419,9 @@ importers:
       moment:
         specifier: ^2.29.4
         version: 2.29.4
+      rrule:
+        specifier: ^2.7.2
+        version: 2.7.2
       superjson:
         specifier: 1.9.1
         version: 1.9.1
