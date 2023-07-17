@@ -30,10 +30,12 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
   // Let the tRPC handler do its magic
-  return createNextApiHandler({
+  const handler = createNextApiHandler({
     router: appRouter,
     createContext: createTRPCContext,
-  })(req, res);
+  });
+
+  return handler(req, res);
 };
 
 export default handler;
