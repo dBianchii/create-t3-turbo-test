@@ -4,7 +4,7 @@ import { H1, Lead } from "@ui/typography";
 import KodixApp from "../components/App/KodixApp";
 import { api } from "../utils/api";
 
-export const runtime = "edge"
+export const runtime = "experimental-edge";
 
 export default function Apps() {
   const { data: apps } = api.app.getInstalled.useQuery();
