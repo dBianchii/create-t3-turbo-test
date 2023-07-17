@@ -14,7 +14,10 @@ import { appRouter, createTRPCContext } from "@kdx/api";
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   // Enable cors
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://client-nextjs-one.vercel.app/",
+  );
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader(
