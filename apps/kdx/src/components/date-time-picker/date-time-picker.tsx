@@ -1,21 +1,22 @@
 "use client";
 
-import { CalendarIcon } from "lucide-react";
 import React, { useRef, useState } from "react";
+import { Button } from "@ui/button";
+import { cn } from "@ui/lib/utils";
+import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 import {
-  type DateValue,
   useButton,
   useDatePicker,
   useInteractOutside,
+  type DateValue,
 } from "react-aria";
-import { type DatePickerStateOptions, useDatePickerState } from "react-stately";
-import { cn } from "@ui/lib/utils";
-import { Button } from "@ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
+import { useDatePickerState, type DatePickerStateOptions } from "react-stately";
+
 import { Calendar } from "./calendar";
 import { DateField } from "./date-field";
 import { TimeField } from "./time-field";
-import { format } from "date-fns";
 
 export function useForwardedRef<T>(ref: React.ForwardedRef<T>) {
   const innerRef = React.useRef<T>(null);
@@ -66,7 +67,7 @@ const DateTimePicker = React.forwardRef<
       ref={ref}
       className={cn(
         groupProps.className,
-        "flex items-center rounded-md ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2"
+        "flex items-center rounded-md ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
       )}
     >
       <Popover open={open} onOpenChange={setOpen}>

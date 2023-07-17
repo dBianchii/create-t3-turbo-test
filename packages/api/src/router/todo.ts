@@ -4,8 +4,6 @@ import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
-const test = "test";
-
 export const todoRouter = createTRPCRouter({
   create: protectedProcedure
     .input(

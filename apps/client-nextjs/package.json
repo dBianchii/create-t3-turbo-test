@@ -26,11 +26,11 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-		"@kdx/auth": "^0.1.0",
+    "@kdx/auth": "^0.1.0",
     "@kdx/db": "^0.1.0",
     "@kdx/api": "^0.1.0",
     "@kdx/eslint-config": "^0.1.0",
     "@kdx/tailwind-config": "^0.1.0",
-		"eslint": "^8.42.0"
+    "eslint": "^8.42.0"
   }
 }

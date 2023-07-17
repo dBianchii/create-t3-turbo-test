@@ -1,5 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
+
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 export const workspaceRouter = createTRPCRouter({
@@ -49,7 +50,7 @@ export const workspaceRouter = createTRPCRouter({
     }),
   update: protectedProcedure
     .input(
-      z.object({ workspaceId: z.string().cuid(), workspaceName: z.string() })
+      z.object({ workspaceId: z.string().cuid(), workspaceName: z.string() }),
     )
     .mutation(async ({ ctx, input }) => {
       const workspace = await ctx.prisma.workspace.update({
@@ -82,7 +83,7 @@ export const workspaceRouter = createTRPCRouter({
     .input(
       z.object({
         appId: z.string().cuid(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const app = await ctx.prisma.app.findUnique({
@@ -126,7 +127,7 @@ export const workspaceRouter = createTRPCRouter({
     .input(
       z.object({
         appId: z.string().cuid(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const uninstalledApp = await ctx.prisma.workspace.update({

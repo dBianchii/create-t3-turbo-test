@@ -1,12 +1,12 @@
 "use client";
 
 import { useRef } from "react";
+import { cn } from "@ui/lib/utils";
 import { useDateSegment } from "react-aria";
 import type {
   DateFieldState,
   DateSegment as IDateSegment,
 } from "react-stately";
-import { cn } from "@ui/lib/utils";
 
 interface DateSegmentProps {
   segment: IDateSegment;
@@ -27,7 +27,7 @@ function DateSegment({ segment, state }: DateSegmentProps) {
       className={cn(
         "focus:rounded-[2px] focus:bg-accent focus:text-accent-foreground focus:outline-none",
         segment.type !== "literal" ? "px-[1px]" : "",
-        segment.isPlaceholder ? "text-muted-foreground" : ""
+        segment.isPlaceholder ? "text-muted-foreground" : "",
       )}
     >
       {segment.text}

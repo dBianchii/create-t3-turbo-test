@@ -9,8 +9,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.headers.origin) {
     if (
       enabledOrigins.includes(req.headers.origin) ||
-      req.headers.origin.includes("kodix.vercel.app")
-			|| req.headers.origin.includes("localhost")
+      req.headers.origin.includes("kodix.vercel.app") ||
+      req.headers.origin.includes("localhost")
     )
       res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
   }

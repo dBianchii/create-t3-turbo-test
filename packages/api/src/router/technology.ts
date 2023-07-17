@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const technologyRouter = createTRPCRouter({
@@ -14,7 +15,7 @@ export const technologyRouter = createTRPCRouter({
         name: z.string(),
         idade: z.number(),
         email: z.string().email().nullish(),
-      })
+      }),
     )
     .query(async ({ ctx, input }) => {
       return await ctx.prisma.technology.create({ data: input });

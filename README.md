@@ -5,7 +5,6 @@
 This a project created from create t3-turbo: https://github.com/t3-oss/create-t3-turbo
 It uses [Turborepo](https://turborepo.org/) and contains:
 
-
 ```
 .github
   └─ workflows
@@ -14,7 +13,7 @@ It uses [Turborepo](https://turborepo.org/) and contains:
   └─ Recommended extensions and settings for VSCode users
 apps
 	├─ kdx
-  |   ├─ Next.js Master back-end. 
+  |   ├─ Next.js Master back-end.
 	|		└─ In here we have one /api/trpc route we serve to our multiple other apps
 	├─ kodixcare
 	|		├─ Next.js Front-end app that interacts with the backend.
@@ -24,7 +23,7 @@ apps
   	  ├─ Navigation using Expo Router
 			├─ Tailwind using Nativewind
       └─ Typesafe API calls using tRPC
-	
+
 
 packages
  ├─ api
@@ -40,6 +39,7 @@ packages
 > In this template, we use `@kdx` as a placeholder for package names. As a user, you might want to replace it with your own organization or project name. You can use find-and-replace to change all the instances of `@kdx/` to something like `@my-company/` / `@project-name/`.
 
 ## FAQ
+
 ### Does this pattern leak backend code to my client applications?
 
 No, it does not. The `api` package should only be a production dependency in the Next.js application where it's served. The Expo app, and all other apps you may add in the future, should only add the `api` package as a dev dependency. This lets you have full typesafety in your client applications, while keeping your backend code safe.

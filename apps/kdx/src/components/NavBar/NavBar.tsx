@@ -1,16 +1,16 @@
 import { Fragment } from "react";
-import { Popover, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  ArrowLeftOnRectangleIcon,
-} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
-import { api } from "src/utils/api";
-import type { Session } from "next-auth";
-import classNames from "classnames";
+import { Popover, Transition } from "@headlessui/react";
+import {
+  ArrowLeftOnRectangleIcon,
+  Bars3Icon,
+} from "@heroicons/react/24/outline";
 import { Button, buttonVariants } from "@ui/button";
+import classNames from "classnames";
+import type { Session } from "next-auth";
+import { signOut, useSession } from "next-auth/react";
+import { api } from "src/utils/api";
 
 const callsToActionProfilePic = [
   //{ name: 'Settings', href: '#', icon: Cog6ToothIcon },
@@ -68,7 +68,7 @@ function LoginOrUserProfile({ session }: LoginOrUserProfileProps) {
     undefined,
     {
       enabled: session?.user !== undefined,
-    }
+    },
   );
 
   const ctx = api.useContext();
@@ -88,10 +88,10 @@ function LoginOrUserProfile({ session }: LoginOrUserProfileProps) {
                 <Popover.Button
                   className={classNames(
                     open ? "text-gray-900" : "text-gray-500",
-                    "group inline-flex items-center rounded-md bg-gray-800 text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    "group inline-flex items-center rounded-md bg-gray-800 text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2",
                   )}
                 >
-                  <div className="bg-azulVioleta w-28 rounded-md bg-gray-600 py-1 px-2">
+                  <div className="bg-azulVioleta w-28 rounded-md bg-gray-600 px-2 py-1">
                     <Image
                       className="h-10 w-10 rounded-full"
                       src={session?.user?.image ?? "/images/avatar.png"}
@@ -139,7 +139,7 @@ function LoginOrUserProfile({ session }: LoginOrUserProfileProps) {
                             </div>
                           ))}
                       </div>
-                      <div className="space-y-6 bg-gray-700 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
+                      <div className="space-y-6 bg-gray-700 px-5 py-5 sm:flex sm:space-x-10 sm:space-y-0 sm:px-8">
                         {callsToActionProfilePic.map((item) => (
                           <div key={item.name} className="flow-root">
                             <Button

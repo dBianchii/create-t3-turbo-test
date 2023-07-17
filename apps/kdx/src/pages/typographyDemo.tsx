@@ -1,4 +1,4 @@
-import { H1, H2, H3, P, Blockquote, UL } from "@ui/typography";
+import { Blockquote, H1, H2, H3, P, UL } from "@ui/typography";
 
 export default function TypographyDemo() {
   return (

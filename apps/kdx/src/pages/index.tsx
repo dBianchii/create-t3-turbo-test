@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Skeleton } from "~/components/ui/skeleton";
 import SEO from "../components/SEO";
 
+const asd = "";
 const Home = () => {
   const sessionData = useSession();
   const { data: workspace } = api.workspace.getActiveWorkspace.useQuery(

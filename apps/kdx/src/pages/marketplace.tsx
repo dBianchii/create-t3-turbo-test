@@ -1,8 +1,9 @@
+import { Separator } from "@ui/separator";
+import { H1, Lead } from "@ui/typography";
 import { useSession } from "next-auth/react";
+
 import KodixApp from "../components/App/KodixApp";
 import { api } from "../utils/api";
-import { H1, Lead } from "@ui/typography";
-import { Separator } from "@ui/separator";
 
 export default function Marketplace() {
   const { data: session } = useSession();
@@ -25,7 +26,7 @@ export default function Marketplace() {
               installed={
                 session
                   ? app.activeWorkspaces.some(
-                      (x) => x.id === session.user.activeWorkspaceId
+                      (x) => x.id === session.user.activeWorkspaceId,
                     )
                   : false
               }
