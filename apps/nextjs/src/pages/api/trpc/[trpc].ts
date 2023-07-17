@@ -26,8 +26,9 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
     "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
   );
   if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
+    return res.status(200).json({
+      body: "OK",
+    });
   }
   // Let the tRPC handler do its magic
   const handler = createNextApiHandler({
