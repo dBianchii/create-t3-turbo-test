@@ -3,7 +3,16 @@ import { createNextApiHandler } from "@trpc/server/adapters/next";
 
 import { appRouter, createTRPCContext } from "@kdx/api";
 
+// export API handler
+// export default createNextApiHandler({
+//   router: appRouter,
+//   createContext: createTRPCContext,
+// });
+
+// If you need to enable cors, you can do so like this:
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
+  // Enable cors
+
   res.setHeader("Access-Control-Allow-Credentials", "*");
   //res.setHeader("Access-Control-Allow-Origin", "*");
   // another common pattern
@@ -21,9 +30,10 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
   // Let the tRPC handler do its magic
-  return res.status(200).json({
-    hello: "world",
-  });
+  return createNextApiHandler({
+    router: appRouter,
+    createContext: createTRPCContext,
+  })(req, res);
 };
 
 export default handler;
