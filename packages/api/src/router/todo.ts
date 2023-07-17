@@ -1,7 +1,10 @@
-import { z } from "zod";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { Status } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
+import { z } from "zod";
+
+import { createTRPCRouter, protectedProcedure } from "../trpc";
+
+const test = "test";
 
 export const todoRouter = createTRPCRouter({
   create: protectedProcedure
@@ -14,7 +17,7 @@ export const todoRouter = createTRPCRouter({
         priority: z.number().optional(),
         status: z.nativeEnum(Status).optional(),
         assignedToUserId: z.string().cuid().optional().nullish(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const todo = await ctx.prisma.todo.create({
@@ -67,7 +70,7 @@ export const todoRouter = createTRPCRouter({
         priority: z.number().optional(),
         status: z.nativeEnum(Status).optional(),
         assignedToUserId: z.string().cuid().optional().nullish(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const todo = await ctx.prisma.todo.update({
