@@ -15,6 +15,5 @@
         }
       ]
     }
-  ],
-  "ignoreCommand": "npx turbo-ignore"
+  ]
 }
