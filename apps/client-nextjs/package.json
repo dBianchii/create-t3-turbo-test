@@ -1,5 +1,5 @@
 {
-  "name": "client-nextjs",
+  "name": "@kdx/client-nextjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,10 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-		"@kdx/api": "^0.1.0",
+    "@kdx/api": "^0.1.0",
     "@kdx/auth": "^0.1.0",
     "@kdx/db": "^0.1.0",
-		"@trpc/client": "^10.32.0",
+    "@trpc/client": "^10.32.0",
     "@trpc/next": "^10.32.0",
     "@trpc/react-query": "^10.32.0",
     "@trpc/server": "^10.32.0",
@@ -29,8 +29,8 @@
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
   },
-	"devDependencies": {
-		"@kdx/eslint-config": "^0.1.0",
+  "devDependencies": {
+    "@kdx/eslint-config": "^0.1.0",
     "@kdx/tailwind-config": "^0.1.0"
-	}
+  }
 }
