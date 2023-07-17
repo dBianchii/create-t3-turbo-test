@@ -3,13 +3,18 @@ import { createNextApiHandler } from "@trpc/server/adapters/next";
 
 import { appRouter, createTRPCContext } from "@kdx/api";
 
+const enabledOrigins = ["https://client-nextjs-one.vercel.app"];
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  // Enable cors
+  // Enable cors for production apps and all kodix.vercel.app apps
+  if (req.headers.origin) {
+    if (
+      enabledOrigins.includes(req.headers.origin) ||
+      req.headers.origin.includes("kodix.vercel.app")
+    )
+      res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+  }
+
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://client-nextjs-one.vercel.app",
-  );
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,OPTIONS,PATCH,DELETE,POST,PUT",
