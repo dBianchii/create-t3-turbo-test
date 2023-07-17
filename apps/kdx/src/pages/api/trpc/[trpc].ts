@@ -1,22 +1,15 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
 import { createNextApiHandler } from "@trpc/server/adapters/next";
-import NextCors from "nextjs-cors";
 
 import { appRouter, createTRPCContext } from "@kdx/api";
 
-// export API handler
-// export default createNextApiHandler({
-//   router: appRouter,
-//   createContext: createTRPCContext,
-// });
-
-// If you need to enable cors, you can do so like this:
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   // Enable cors
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  //res.setHeader("Access-Control-Allow-Origin", "*");
-  // another common pattern
-  res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://client-nextjs-one.vercel.app",
+  );
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,OPTIONS,PATCH,DELETE,POST,PUT",
