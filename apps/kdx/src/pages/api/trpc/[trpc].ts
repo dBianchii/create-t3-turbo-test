@@ -5,11 +5,12 @@ import { appRouter, createTRPCContext } from "@kdx/api";
 
 const enabledOrigins = ["https://client-nextjs-one.vercel.app"];
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  // Enable cors for production apps and all kodix.vercel.app apps
+  // Enable cors for production apps, all kodix.vercel.app apps and localhost
   if (req.headers.origin) {
     if (
       enabledOrigins.includes(req.headers.origin) ||
       req.headers.origin.includes("kodix.vercel.app")
+			|| req.headers.origin.includes("localhost")
     )
       res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
   }

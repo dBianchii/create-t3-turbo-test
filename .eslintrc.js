@@ -10,7 +10,7 @@ const config = {
   },
   settings: {
     next: {
-      rootDir: ["apps/kdx"],
+      rootDir: ["apps/kdx", "apps/client-nextjs"],
     },
   },
 };

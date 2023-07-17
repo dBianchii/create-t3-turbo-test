@@ -1,6 +1,7 @@
 "use client";
 
-import { api } from "@/utils/api";
+import { api } from "~/utils/api";
+const asd = ""
 
 export default function Home() {
   const { data: apps } = api.app.getAll.useQuery();
